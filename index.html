@@ -3,26 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>简易文件分享站</title>
+    <title>NYweb</title>
     <link rel="stylesheet" href="./css/style.css">
-    <!-- 图标库 -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/brands.min.css">
+    <!-- Font Awesome ?? -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/brands.min.css">
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>逆叶简易文件分享站</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <!-- Font Awesome 图标 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/brands.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/solid.min.css">
 </head>
 <body>
     <div class="container">
+        <div class="datetime-display" id="datetime-display">
+            <span id="current-date"></span>
+            <span id="current-time"></span>
+        </div>
         <header>
             <h1>逆叶简易文件分享站</h1>
             <p>轻松下载文件</p>
+            <div class="search-container">
+                <input type="text" class="search-input" id="search-input" placeholder="搜索文件..." />
+            </div>
         </header>
 
         <main>
             <div class="file-list">
-                <!-- 文件列表将通过JavaScript动态生成 -->
+                <!-- 文件列表将由JavaScript动态生成 -->
             </div>
             <div class="about-section">
                 <h2>关于</h2>
                 <p>这是我做的一个简单的文件分享站，如果直链下载不可用，请使用网盘下载。</p>
+                <div class="pan-download-info">
+                    <h3>网盘下载通道</h3>
+                    <p>主链接：<a href="https://www.123684.com/s/QtPDTd-oRl5v?" target="_blank" class="pan-link"><i class="fas fa-cloud-download-alt"></i> 点击下载</a></p>
+                    <p>备用链接：<a href="https://www.123865.com/s/QtPDTd-oRl5v?" target="_blank" class="pan-link"><i class="fas fa-cloud-download-alt"></i> 点击下载</a></p>
+                    <p>提取码：<span class="extract-code">zlVV</span></p>
+                </div>
                 <p>作者：逆叶，QQ群：876331156，bilibili：<a href="https://space.bilibili.com/3546773477919038?spm_id_from=333.788.0.0" target="_blank" class="bilibili-link"><i class="fab fa-bilibili"></i> 访问作者B站主页</a></p>
             </div>
         </main>
