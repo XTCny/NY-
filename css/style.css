@@ -1,4 +1,3 @@
-/* ???? */
 :root {
     --primary-color: #3498db;
     --secondary-color: #2980b9;
@@ -38,6 +37,68 @@ body {
     padding: 20px;
 }
 
+/* ????? */
+.folder {
+    background-color: white;
+    border-radius: var(--radius);
+    margin-bottom: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.folder-header {
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    background-color: var(--hover-color);
+    border-radius: var(--radius) var(--radius) 0 0;
+    cursor: pointer;
+}
+
+.folder-header i {
+    color: var(--primary-color);
+    margin-right: 10px;
+}
+
+.folder-name {
+    flex-grow: 1;
+    font-weight: 500;
+}
+
+.folder-toggle {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    cursor: pointer;
+    padding: 5px;
+}
+
+.folder-toggle:hover {
+    color: var(--primary-color);
+}
+
+.folder-content {
+    padding: 10px;
+    display: none;
+}
+
+/* ???????? */
+.datetime-display {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 10px;
+    text-align: center;
+    border-radius: var(--radius);
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    font-size: 1.1em;
+}
+
+.datetime-display span {
+    display: inline-block;
+}
+
 /* ???? */
 header {
     text-align: center;
@@ -51,6 +112,10 @@ header {
 
 header h1 {
     margin-bottom: 10px;
+}
+
+header p {
+    margin-bottom: 15px;
 }
 
 /* ?????? */
@@ -87,6 +152,39 @@ main {
     font-size: 24px;
     margin-right: 15px;
     color: var(--primary-color);
+}
+
+/* ?????? */
+.fa-android {
+    color: #3DDC84;
+}
+
+/* ????? */
+.search-container {
+    margin: 0;
+    display: flex;
+    gap: 10px;
+}
+
+.search-input {
+    flex-grow: 1;
+    padding: 10px 15px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: var(--radius);
+    font-size: 16px;
+    outline: none;
+    transition: all 0.2s;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.search-input:focus {
+    border-color: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.search-input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
 }
 
 .file-info {
@@ -158,9 +256,41 @@ main {
     font-size: 1.5em;
 }
 
+.about-section h3 {
+    color: var(--secondary-color);
+    margin: 20px 0 15px;
+}
+
 .about-section p {
     margin-bottom: 10px;
     line-height: 1.6;
+}
+
+.pan-download-info {
+    background-color: var(--hover-color);
+    padding: 20px;
+    border-radius: var(--radius);
+    margin: 20px 0;
+}
+
+.pan-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    margin-left: 5px;
+    transition: color 0.2s;
+}
+
+.pan-link:hover {
+    color: var(--secondary-color);
+}
+
+.extract-code {
+    background-color: #f8f9fa;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-family: monospace;
+    margin-left: 5px;
+    border: 1px solid var(--border-color);
 }
 
 .bilibili-link {
