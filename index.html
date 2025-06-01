@@ -24,25 +24,84 @@
         <header>
             <h1>逆叶简易文件分享站</h1>
             <p>轻松下载文件</p>
-            <div class="search-container">
-                <input type="text" class="search-input" id="search-input" placeholder="搜索文件..." />
+            <div class="nav-container">
+                <div class="nav-buttons">
+                    <button class="nav-btn active" id="files-btn">
+                        <i class="fas fa-folder"></i>
+                        <span>文件列表</span>
+                    </button>
+                    <button class="nav-btn" id="topics-btn">
+                        <i class="fas fa-newspaper"></i>
+                        <span>专题中心</span>
+                    </button>
+                </div>
+                <div class="search-container">
+                    <input type="text" class="search-input" id="search-input" placeholder="搜索文件..." />
+                </div>
             </div>
         </header>
 
         <main>
-            <div class="file-list">
-                <!-- ??????JavaScript???? -->
-            </div>
-            <div class="about-section">
-                <h2>关于</h2>
-                <p>这是我做的一个简单的文件分享站，如果直链下载不可用，请使用网盘下载。</p>
-                <div class="pan-download-info">
-                    <h3>网盘下载通道</h3>
-                    <p>主链接：<a href="https://www.123684.com/s/QtPDTd-oRl5v?" target="_blank" class="pan-link"><i class="fas fa-cloud-download-alt"></i> 点击下载</a></p>
-                    <p>备用链接：<a href="https://www.123865.com/s/QtPDTd-oRl5v?" target="_blank" class="pan-link"><i class="fas fa-cloud-download-alt"></i> 点击下载</a></p>
-                    <p>提取码：<span class="extract-code">zlVV</span></p>
+            <!-- 文件列表页面 -->
+            <div class="page-content" id="files-page">
+                <div class="file-list">
+                    <!-- 由JavaScript动态生成 -->
                 </div>
-                <p>作者：逆叶，QQ群：876331156，bilibili：<a href="https://space.bilibili.com/3546773477919038?spm_id_from=333.788.0.0" target="_blank" class="bilibili-link"><i class="fab fa-bilibili"></i> 访问作者B站主页</a></p>
+            </div>
+            
+            <!-- 专题中心页面 -->
+            <div class="page-content hidden" id="topics-page">
+                <div class="topics-grid">
+                    <!-- 关于专题 -->
+                    <div class="topic-card" data-topic="about">
+                        <div class="topic-icon">
+                            <i class="fas fa-info-circle"></i>
+                        </div>
+                        <h3>关于我们</h3>
+                        <p>了解本站的基本信息和使用说明</p>
+                    </div>
+                    
+                    <!-- 捐赠专题 -->
+                    <div class="topic-card" data-topic="donate">
+                        <div class="topic-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h3>支持我们</h3>
+                        <p>如果您觉得本站有用，欢迎捐赠支持</p>
+                    </div>
+                    
+                    <!-- 上传文件专题 -->
+                    <div class="topic-card" data-topic="upload">
+                        <div class="topic-icon">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                        </div>
+                        <h3>文件上传</h3>
+                        <p>了解如何向本站提交文件</p>
+                    </div>
+                    
+                    <!-- 公告专题 -->
+                    <div class="topic-card" data-topic="announcement">
+                        <div class="topic-icon">
+                            <i class="fas fa-bullhorn"></i>
+                        </div>
+                        <h3>站点公告</h3>
+                        <p>查看最新的网站公告和更新信息</p>
+                    </div>
+                </div>
+                
+                <!-- 专题详情页面 -->
+                <div class="topic-detail hidden" id="topic-detail">
+                    <div class="topic-header">
+                        <button class="back-btn" id="back-btn">
+                            <i class="fas fa-arrow-left"></i>
+                            <span>返回专题</span>
+                        </button>
+                        <h2 id="topic-title">专题标题</h2>
+                    </div>
+                    <div class="topic-content" id="topic-content">
+                        <!-- 动态内容 -->
+                    </div>
+                </div>
             </div>
         </main>
 
