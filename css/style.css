@@ -1,12 +1,66 @@
-/* ?????? */
+@charset "UTF-8";
+
+/* ========== 浅色主题（白天模式）========== */
 :root {
-    --primary-color: #3498db;
-    --secondary-color: #2980b9;
-    --background-color: #f5f5f5;
-    --text-color: #333;
-    --border-color: #ddd;
-    --hover-color: #f0f0f0;
-    --radius: 8px;
+    /* 主要颜色 */
+    --primary-color: #3498db;           /* 主色调：蓝色 */
+    --secondary-color: #2980b9;         /* 辅助色：深蓝色 */
+    
+    /* 背景颜色 */
+    --background-color: #f0f4f8;        /* 页面背景：浅灰蓝色 */
+    --card-bg: rgba(255, 255, 255, 0.85); /* 卡片背景：半透明白色 */
+    --header-bg: rgba(52, 152, 219, 0.9); /* 头部背景：半透明蓝色 */
+    
+    /* 文字颜色 */
+    --text-color: #2c3e50;              /* 主要文字：深灰色 */
+    --text-secondary: #7f8c8d;          /* 次要文字：中灰色 */
+    
+    /* 搜索栏颜色 */
+    --search-bg: rgba(255, 255, 255, 0.9); /* 搜索框背景：半透明白色 */
+    --search-text: #2c3e50;             /* 搜索框文字：深灰色 */
+    --search-placeholder: #7f8c8d;      /* 搜索框占位符：中灰色 */
+    
+    /* 日期时间显示颜色 */
+    --datetime-bg: rgba(52, 152, 219, 0.9); /* 日期时间背景：半透明蓝色 */
+    --datetime-text: #ffffff;           /* 日期时间文字：白色 */
+    
+    /* 其他样式 */
+    --border-color: #ddd;               /* 边框颜色：浅灰色 */
+    --hover-color: rgba(240, 240, 240, 0.7); /* 悬停背景：浅灰色 */
+    --shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* 阴影效果 */
+    --transition: all 0.3s ease;        /* 过渡动画 */
+    --radius: 10px;                     /* 圆角大小 */
+    --blur-effect: blur(10px);          /* 模糊效果 */
+}
+
+/* ========== 深色主题（黑夜模式）========== */
+[data-theme="dark"] {
+    /* 主要颜色 - 科技感蓝黑色调 */
+    --primary-color: #0099FF;           /* 主色调：浅蓝色（强调色）*/
+    --secondary-color: #003366;         /* 辅助色：深蓝色 */
+    
+    /* 背景颜色 */
+    --background-color: #000000;        /* 页面背景：纯黑色 */
+    --card-bg: rgba(0, 51, 102, 0.15);  /* 卡片背景：半透明深蓝色 */
+    --header-bg: rgba(18, 23, 24, 0.9);    /* 头部背景：半透明黑色 */
+    
+    /* 文字颜色 */
+    --text-color: #ffffff;              /* 主要文字：纯白色 */
+    --text-secondary: #b3d9ff;          /* 次要文字：浅蓝白色 */
+    
+    /* 搜索栏颜色 */
+    --search-bg: rgba(0, 51, 102, 0.596); /* 搜索框背景：半透明深蓝色 */
+    --search-text: #ffffff;             /* 搜索框文字：纯白色 */
+    --search-placeholder: #b3d9ff;      /* 搜索框占位符：浅蓝白色 */
+    
+    /* 日期时间显示颜色 */
+    --datetime-bg: rgba(0, 38, 77, 0.8); /* 日期时间背景：深蓝色 */
+    --datetime-text: #0099FF;           /* 日期时间文字：浅蓝色 */
+    
+    /* 其他样式 */
+    --border-color: #003366;            /* 边框颜色：深蓝色 */
+    --hover-color: rgba(0, 51, 102, 0.2); /* 悬停背景：浅深蓝色 */
+    --shadow: 0 4px 15px rgba(0, 153, 255, 0.1); /* 阴影效果（蓝色光晕） */
 }
 
 * {
@@ -15,356 +69,609 @@
     box-sizing: border-box;
 }
 
-@charset "UTF-8";
-
+/* ========== 字体设置 ========== */
 @font-face {
     font-family: 'Microsoft YaHei';
     src: local('Microsoft YaHei');
     font-display: swap;
 }
 
+/* ========== 页面主体样式 ========== */
 body {
     font-family: 'Microsoft YaHei', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    background-color: var(--background-color);
-    color: var(--text-color);
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    background-color: var(--background-color);  /* 使用主题背景色 */
+    background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);  /* 白天模式渐变背景 */
+    background-attachment: fixed;               /* 背景固定 */
+    color: var(--text-color);                   /* 使用主题文字色 */
+    line-height: 1.6;                          /* 行高 */
+    -webkit-font-smoothing: antialiased;       /* 字体平滑 */
+    -moz-osx-font-smoothing: grayscale;        /* 字体平滑 */
+    transition: var(--transition);              /* 过渡动画 */
+    min-height: 100vh;                         /* 最小高度为视窗高度 */
 }
 
-.container {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 20px;
+/* 黑夜模式页面背景 */
+[data-theme="dark"] body {
+    background-image: linear-gradient(135deg, #0d1117 0%, #161b22 50%, #21262d 100%);  /* 黑夜模式渐变背景 */
+    background-color: #0d1117;                 /* 黑夜模式背景色 */
 }
 
-/* ????? */
-.folder {
-    background-color: white;
-    border-radius: var(--radius);
-    margin-bottom: 15px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+/* ========== 主题切换按钮 ========== */
+.theme-toggle {
+    position: fixed;                            /* 固定定位 */
+    top: 20px;                                  /* 距离顶部 */
+    right: 20px;                               /* 距离右侧 */
+    width: 50px;                               /* 按钮宽度 */
+    height: 50px;                              /* 按钮高度 */
+    background-color: var(--card-bg);          /* 使用卡片背景色 */
+    border-radius: 50%;                        /* 圆形按钮 */
+    display: flex;                             /* 弹性布局 */
+    align-items: center;                       /* 垂直居中 */
+    justify-content: center;                   /* 水平居中 */
+    cursor: pointer;                           /* 鼠标指针 */
+    box-shadow: var(--shadow);                 /* 阴影效果 */
+    backdrop-filter: var(--blur-effect);       /* 背景模糊 */
+    -webkit-backdrop-filter: var(--blur-effect); /* Safari背景模糊 */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* 半透明边框 */
+    transition: var(--transition);              /* 过渡动画 */
+    z-index: 1000;                             /* 层级 */
 }
 
-.folder-header {
-    display: flex;
-    align-items: center;
-    padding: 12px 15px;
-    background-color: var(--hover-color);
-    border-radius: var(--radius) var(--radius) 0 0;
-    cursor: pointer;
+/* 主题切换按钮悬停效果 */
+.theme-toggle:hover {
+    transform: scale(1.1);                      /* 放大效果 */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); /* 加强阴影 */
 }
 
-.folder-header i {
-    color: var(--primary-color);
-    margin-right: 10px;
+/* 主题切换按钮图标 */
+.theme-toggle i {
+    font-size: 20px;                           /* 图标大小 */
+    color: var(--text-color);                  /* 使用主题文字色 */
+    transition: var(--transition);              /* 过渡动画 */
 }
 
-.folder-name {
-    flex-grow: 1;
-    font-weight: 500;
+/* 主题切换旋转动画 */
+.theme-toggle.rotating {
+    animation: rotate 0.5s ease-in-out;        /* 旋转动画 */
 }
 
-.folder-toggle {
-    background: none;
-    border: none;
-    color: var(--text-color);
-    cursor: pointer;
-    padding: 5px;
+/* 旋转动画关键帧 */
+@keyframes rotate {
+    0% { transform: rotate(0deg); }             /* 起始角度 */
+    50% { transform: rotate(180deg) scale(1.2); } /* 中间角度并放大 */
+    100% { transform: rotate(360deg); }         /* 结束角度 */
 }
 
-.folder-toggle:hover {
-    color: var(--primary-color);
+/* ========== 无文件提示样式 ========== */
+.no-files {
+    text-align: center;                         /* 文字居中 */
+    padding: 2rem;                              /* 内边距 */
+    color: var(--text-secondary);               /* 使用次要文字色 */
+    font-style: italic;                         /* 斜体字 */
+    background: var(--card-bg);                 /* 使用卡片背景色 */
+    border-radius: 12px;                        /* 圆角 */
+    margin: 1rem 0;                             /* 外边距 */
+    backdrop-filter: var(--blur-effect);        /* 背景模糊 */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* 半透明边框 */
+    transition: var(--transition);               /* 过渡动画 */
 }
 
-.folder-content {
-    padding: 10px;
-    display: none;
-}
-
-/* ???????? */
-.datetime-display {
-    background-color: var(--primary-color);
-    color: white;
-    padding: 10px;
-    text-align: center;
-    border-radius: var(--radius);
-    margin-bottom: 10px;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    font-size: 1.1em;
-}
-
-.datetime-display span {
-    display: inline-block;
-}
-
-/* ???? */
-header {
-    text-align: center;
-    margin-bottom: 30px;
-    padding: 20px;
-    background-color: var(--primary-color);
-    color: white;
-    border-radius: var(--radius);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-header h1 {
-    margin-bottom: 10px;
-}
-
-header p {
-    margin-bottom: 15px;
-}
-
-/* ?????? */
-main {
-    background-color: white;
-    border-radius: var(--radius);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    margin-bottom: 20px;
-}
-
-/* ?????? */
-.file-list {
-    width: 100%;
-}
-
-.file-item {
-    display: flex;
-    align-items: center;
-    padding: 15px;
-    border-bottom: 1px solid var(--border-color);
-    transition: background-color 0.2s;
-}
-
-.file-item:last-child {
-    border-bottom: none;
-}
-
-.file-item:hover {
-    background-color: var(--hover-color);
-}
-
-.file-icon {
-    font-size: 24px;
-    margin-right: 15px;
-    color: var(--primary-color);
-}
-
-/* ?????? */
-.fa-android {
-    color: #3DDC84;
-}
-
-/* ????? */
-.search-container {
-    margin: 0;
-    display: flex;
-    gap: 10px;
-}
-
-.search-input {
-    flex-grow: 1;
-    padding: 10px 15px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: var(--radius);
-    font-size: 16px;
-    outline: none;
-    transition: all 0.2s;
-    background: rgba(255, 255, 255, 0.1);
-    color: white;
-}
-
-.search-input:focus {
-    border-color: rgba(255, 255, 255, 0.8);
-    background: rgba(255, 255, 255, 0.2);
-}
-
-.search-input::placeholder {
-    color: rgba(255, 255, 255, 0.7);
-}
-
-.file-info {
-    flex-grow: 1;
-}
-
-.file-name {
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-.file-description {
-    font-size: 14px;
-    color: #666;
-}
-
-.file-actions {
-    display: flex;
-    gap: 10px;
-}
-
-.download-btn, .alt-download-btn {
-    padding: 6px 12px;
-    border-radius: var(--radius);
-    text-decoration: none;
-    color: white;
-    transition: all 0.2s ease;
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    font-size: 14px;
-    white-space: nowrap;
-    cursor: pointer;
-    border: none;
-}
-
-.download-btn {
-    background-color: var(--primary-color);
-}
-
-.download-btn:hover {
-    background-color: var(--secondary-color);
-}
-
-.alt-download-btn {
-    background-color: #27ae60;
-}
-
-.alt-download-btn i {
-    margin-right: 5px;
-}
-
-.alt-download-btn:hover {
-    background-color: #219653;
-}
-
-/* ?????? */
-.about-section {
-    margin-top: 30px;
-    padding: 20px;
-    background-color: white;
-    border-radius: var(--radius);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.about-section h2 {
-    color: var(--primary-color);
-    margin-bottom: 15px;
-    font-size: 1.5em;
-}
-
-.about-section h3 {
-    color: var(--secondary-color);
-    margin: 20px 0 15px;
-}
-
-.about-section p {
-    margin-bottom: 10px;
-    line-height: 1.6;
-}
-
-.pan-download-info {
-    background-color: var(--hover-color);
-    padding: 20px;
-    border-radius: var(--radius);
-    margin: 20px 0;
-}
-
-.pan-link {
-    color: var(--primary-color);
-    text-decoration: none;
-    margin-left: 5px;
-    transition: color 0.2s;
-}
-
-.pan-link:hover {
-    color: var(--secondary-color);
-}
-
-.extract-code {
-    background-color: #f8f9fa;
-    padding: 2px 8px;
-    border-radius: 4px;
-    font-family: monospace;
-    margin-left: 5px;
-    border: 1px solid var(--border-color);
-}
-
-.bilibili-link {
-    color: #00a1d6;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    transition: color 0.2s;
-}
-
-.bilibili-link i {
-    margin-right: 5px;
-    font-size: 1.2em;
-}
-
-.bilibili-link:hover {
-    color: #0088b3;
-}
-
-/* ???? */
-footer {
-    text-align: center;
-    padding: 15px;
-    color: #666;
-    font-size: 14px;
-}
-
-/* ????? */
+/* ========== 响应式设计（平板设备）========== */
 @media (max-width: 768px) {
-    .container {
-        padding: 10px;
+    .header {
+        flex-direction: column;                  /* 垂直排列 */
+        gap: 1rem;                              /* 间距 */
+        padding: 1rem;                          /* 内边距 */
+    }
+    
+    .search-container {
+        width: 100%;                            /* 搜索框全宽 */
+    }
+    
+    .theme-toggle {
+        position: relative;                     /* 相对定位 */
+        top: auto;                              /* 自动顶部位置 */
+        right: auto;                            /* 自动右侧位置 */
+        margin: 0;                              /* 无外边距 */
     }
     
     .file-item {
-        flex-direction: column;
-        align-items: flex-start;
+        flex-direction: column;                 /* 垂直排列 */
+        align-items: flex-start;                /* 左对齐 */
+        gap: 0.5rem;                            /* 间距 */
     }
     
     .file-actions {
-        margin-top: 10px;
-        width: 100%;
-        justify-content: space-between;
+        width: 100%;                            /* 操作按钮全宽 */
+        justify-content: center;                /* 居中对齐 */
     }
     
-    .file-icon {
-        margin-bottom: 10px;
+    .folder-header {
+        flex-wrap: wrap;                        /* 允许换行 */
     }
 }
 
-/* ???????????? */
-@media (max-width: 320px) {
-    header {
-        padding: 10px;
+/* ========== 容器样式 ========== */
+.container {
+    max-width: 1000px;                          /* 最大宽度 */
+    margin: 0 auto;                             /* 水平居中 */
+    padding: 20px;                              /* 内边距 */
+}
+
+/* ========== 文件夹样式 ========== */
+.folder {
+    background-color: var(--card-bg);           /* 使用卡片背景色 */
+    backdrop-filter: var(--blur-effect);        /* 背景模糊 */
+    -webkit-backdrop-filter: var(--blur-effect); /* Safari背景模糊 */
+    border-radius: var(--radius);               /* 圆角 */
+    margin-bottom: 15px;                        /* 底部外边距 */
+    box-shadow: var(--shadow);                  /* 阴影效果 */
+    transition: var(--transition);               /* 过渡动画 */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* 半透明边框 */
+}
+
+/* 文件夹悬停效果 */
+.folder:hover {
+    transform: translateY(-2px);                /* 向上移动 */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); /* 加强阴影 */
+}
+
+/* 文件夹头部 */
+.folder-header {
+    display: flex;                              /* 弹性布局 */
+    align-items: center;                        /* 垂直居中 */
+    padding: 14px 18px;                         /* 内边距 */
+    background-color: rgba(0, 0, 0, 0.02);      /* 轻微的背景色 */
+    border-radius: var(--radius) var(--radius) 0 0; /* 顶部圆角 */
+    cursor: pointer;                            /* 鼠标指针 */
+    transition: var(--transition);               /* 过渡动画 */
+    border-bottom: 1px solid var(--border-color); /* 底部边框 */
+}
+
+/* 文件夹头部悬停效果 */
+.folder-header:hover {
+    background-color: var(--hover-color);       /* 悬停背景色 */
+}
+
+/* 黑夜模式下的文件夹头部 */
+[data-theme="dark"] .folder-header {
+    background-color: rgba(255, 255, 255, 0.02); /* 黑夜模式轻微背景 */
+    border-bottom: 1px solid var(--border-color); /* 黑夜模式边框 */
+}
+
+/* 文件夹头部图标 */
+.folder-header i {
+    color: var(--primary-color);                /* 使用主色调 */
+    margin-right: 10px;                         /* 右边距 */
+}
+
+/* 文件夹名称 */
+.folder-name {
+    flex-grow: 1;                               /* 占据剩余空间 */
+    font-weight: 500;                           /* 字体粗细 */
+}
+
+/* 文件夹展开/收起按钮 */
+.folder-toggle {
+    background: none;                           /* 无背景 */
+    border: none;                               /* 无边框 */
+    color: var(--text-color);                   /* 使用主题文字色 */
+    cursor: pointer;                            /* 鼠标指针 */
+    padding: 5px;                               /* 内边距 */
+}
+
+/* 文件夹切换按钮悬停效果 */
+.folder-toggle:hover {
+    color: var(--primary-color);                /* 悬停时使用主色调 */
+}
+
+/* 文件夹内容区域 */
+.folder-content {
+    padding: 10px;                              /* 内边距 */
+    display: none;                              /* 默认隐藏 */
+}
+
+/* ========== 日期时间显示样式 ========== */
+.datetime-display {
+    background-color: var(--datetime-bg);       /* 使用日期时间背景色 */
+    color: var(--datetime-text);                /* 使用日期时间文字色 */
+    padding: 12px;                              /* 内边距 */
+    text-align: center;                         /* 文字居中 */
+    border-radius: var(--radius);               /* 圆角 */
+    margin-bottom: 15px;                        /* 底部外边距 */
+    display: flex;                              /* 弹性布局 */
+    justify-content: center;                    /* 水平居中 */
+    gap: 20px;                                  /* 元素间距 */
+    font-size: 1.1em;                          /* 字体大小 */
+    font-weight: 500;                           /* 字体粗细 */
+    box-shadow: var(--shadow);                  /* 阴影效果 */
+    backdrop-filter: var(--blur-effect);        /* 背景模糊 */
+    -webkit-backdrop-filter: var(--blur-effect); /* Safari背景模糊 */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* 半透明边框 */
+    transition: var(--transition);               /* 过渡动画 */
+}
+
+/* 日期时间显示内的文本元素 */
+.datetime-display span {
+    display: inline-block;                      /* 行内块元素 */
+}
+
+/* ========== 头部样式 ========== */
+header {
+    text-align: center;                         /* 文字居中 */
+    margin-bottom: 30px;                        /* 底部外边距 */
+    padding: 25px;                              /* 内边距 */
+    background-color: var(--header-bg);         /* 使用头部背景色 */
+    color: var(--datetime-text);                /* 使用日期时间文字色 */
+    border-radius: var(--radius);               /* 圆角 */
+    box-shadow: var(--shadow);                  /* 阴影效果 */
+    backdrop-filter: var(--blur-effect);        /* 背景模糊 */
+    -webkit-backdrop-filter: var(--blur-effect); /* Safari背景模糊 */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* 半透明边框 */
+    transition: var(--transition);               /* 过渡动画 */
+}
+
+/* 头部标题 */
+header h1 {
+    margin-bottom: 10px;                        /* 底部外边距 */
+}
+
+/* 头部描述文字 */
+header p {
+    margin-bottom: 15px;                        /* 底部外边距 */
+}
+
+/* ========== 主要内容区域 ========== */
+main {
+    background-color: var(--card-bg);           /* 使用卡片背景色 */
+    border-radius: var(--radius);               /* 圆角 */
+    box-shadow: var(--shadow);                  /* 阴影效果 */
+    padding: 25px;                              /* 内边距 */
+    margin-bottom: 25px;                        /* 底部外边距 */
+    backdrop-filter: var(--blur-effect);        /* 背景模糊 */
+    -webkit-backdrop-filter: var(--blur-effect); /* Safari背景模糊 */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* 半透明边框 */
+    transition: var(--transition);               /* 过渡动画 */
+}
+
+/* ========== 文件列表容器 ========== */
+.file-list {
+    width: 100%;                                /* 全宽 */
+}
+
+/* ========== 文件项样式 ========== */
+.file-item {
+    display: flex;                              /* 弹性布局 */
+    align-items: center;                        /* 垂直居中 */
+    padding: 16px;                              /* 内边距 */
+    border-bottom: 1px solid var(--border-color); /* 底部边框 */
+    transition: var(--transition);               /* 过渡动画 */
+    border-radius: 6px;                         /* 圆角 */
+    margin-bottom: 5px;                         /* 底部外边距 */
+}
+
+/* 最后一个文件项无底部边框 */
+.file-item:last-child {
+    border-bottom: none;                        /* 无底部边框 */
+}
+
+/* 文件项悬停效果 */
+.file-item:hover {
+    background-color: var(--hover-color);       /* 悬停背景色 */
+    transform: translateX(3px);                 /* 向右移动 */
+}
+
+/* 黑夜模式下的文件项边框 */
+[data-theme="dark"] .file-item {
+    border-bottom: 1px solid var(--border-color); /* 黑夜模式边框 */
+}
+
+/* 文件图标 */
+.file-icon {
+    font-size: 24px;                            /* 图标大小 */
+    margin-right: 15px;                         /* 右边距 */
+    color: var(--primary-color);                /* 使用主色调 */
+}
+
+/* 安卓应用图标特殊颜色 */
+.fa-android {
+    color: #3DDC84;                             /* 安卓绿色 */
+}
+
+/* 黑夜模式下的安卓图标 */
+[data-theme="dark"] .fa-android {
+    color: #0099FF;                             /* 黑夜模式下使用主题蓝色保持一致性 */
+}
+
+/* ========== 搜索栏样式 ========== */
+.search-container {
+    margin: 0;                                  /* 无外边距 */
+    display: flex;                              /* 弹性布局 */
+    gap: 10px;                                  /* 元素间距 */
+}
+
+/* 搜索输入框 */
+.search-input {
+    flex-grow: 1;                               /* 占据剩余空间 */
+    padding: 12px 18px;                         /* 内边距 */
+    border: 1px solid var(--border-color);     /* 边框 */
+    border-radius: var(--radius);               /* 圆角 */
+    font-size: 16px;                            /* 字体大小 */
+    outline: none;                              /* 无轮廓 */
+    transition: var(--transition);               /* 过渡动画 */
+    background: var(--search-bg);               /* 使用搜索框背景色 */
+    color: var(--search-text);                  /* 使用搜索框文字色 */
+    box-shadow: var(--shadow);                  /* 阴影效果 */
+    backdrop-filter: var(--blur-effect);        /* 背景模糊 */
+    -webkit-backdrop-filter: var(--blur-effect); /* Safari背景模糊 */
+}
+
+/* 搜索输入框焦点效果（白天模式）*/
+.search-input:focus {
+    border-color: var(--primary-color);         /* 焦点边框色 */
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1), var(--shadow); /* 焦点阴影 */
+    transform: translateY(-1px);                /* 向上移动 */
+}
+
+/* 搜索输入框焦点效果（黑夜模式）*/
+[data-theme="dark"] .search-input:focus {
+    box-shadow: 0 0 0 3px rgba(79, 195, 247, 0.2), var(--shadow); /* 黑夜模式焦点阴影 */
+}
+
+/* 搜索输入框占位符文字 */
+.search-input::placeholder {
+    color: var(--search-placeholder);           /* 使用占位符文字色 */
+}
+
+/* ========== 文件信息区域 ========== */
+.file-info {
+    flex-grow: 1;                               /* 占据剩余空间 */
+}
+
+/* 文件名称 */
+.file-name {
+    font-weight: bold;                          /* 粗体字 */
+    margin-bottom: 5px;                         /* 底部外边距 */
+}
+
+/* 文件描述 */
+.file-description {
+    font-size: 14px;                            /* 字体大小 */
+    color: var(--text-secondary);               /* 使用次要文字色 */
+}
+
+/* ========== 文件操作按钮区域 ========== */
+.file-actions {
+    display: flex;                              /* 弹性布局 */
+    gap: 10px;                                  /* 按钮间距 */
+}
+
+/* 下载按钮通用样式 */
+.download-btn, .alt-download-btn {
+    padding: 10px 18px;                         /* 内边距 */
+    border-radius: var(--radius);               /* 圆角 */
+    text-decoration: none;                      /* 无下划线 */
+    color: white;                               /* 白色文字 */
+    transition: var(--transition);               /* 过渡动画 */
+    display: inline-flex;                       /* 行内弹性布局 */
+    align-items: center;                        /* 垂直居中 */
+    gap: 5px;                                   /* 图标与文字间距 */
+    font-size: 14px;                            /* 字体大小 */
+    white-space: nowrap;                        /* 不换行 */
+    cursor: pointer;                            /* 鼠标指针 */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* 半透明边框 */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);   /* 阴影效果 */
+}
+
+/* 主下载按钮 */
+.download-btn {
+    background-color: var(--primary-color);     /* 使用主色调背景 */
+}
+
+/* 主下载按钮悬停效果 */
+.download-btn:hover {
+    background-color: var(--secondary-color);   /* 悬停时使用辅助色 */
+    transform: translateY(-2px);                /* 向上移动 */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* 加强阴影 */
+}
+
+/* 备用下载按钮 */
+.alt-download-btn {
+    background-color: #27ae60;                  /* 绿色背景 */
+}
+
+/* 备用下载按钮图标 */
+.alt-download-btn i {
+    margin-right: 5px;                          /* 右边距 */
+}
+
+/* 备用下载按钮悬停效果 */
+.alt-download-btn:hover {
+    background-color: #219653;                  /* 悬停时深绿色 */
+    transform: translateY(-2px);                /* 向上移动 */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* 加强阴影 */
+}
+
+/* 黑夜模式下的备用下载按钮 */
+[data-theme="dark"] .alt-download-btn {
+    background-color: #0099FF;                  /* 黑夜模式下使用主题蓝色 */
+}
+
+[data-theme="dark"] .alt-download-btn:hover {
+    background-color: #0077CC;                  /* 黑夜模式悬停时使用深蓝色 */
+}
+
+/* ========== 关于部分样式 ========== */
+.about-section {
+    margin-top: 30px;                           /* 顶部外边距 */
+    padding: 20px;                              /* 内边距 */
+    background-color: var(--card-bg);           /* 使用卡片背景色 */
+    border-radius: var(--radius);               /* 圆角 */
+    box-shadow: var(--shadow);                  /* 使用主题阴影 */
+    backdrop-filter: var(--blur-effect);        /* 背景模糊 */
+    -webkit-backdrop-filter: var(--blur-effect); /* Safari背景模糊 */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* 半透明边框 */
+    transition: var(--transition);               /* 过渡动画 */
+}
+
+/* 关于部分主标题 */
+.about-section h2 {
+    color: var(--primary-color);                /* 使用主色调 */
+    margin-bottom: 15px;                        /* 底部外边距 */
+    font-size: 1.5em;                           /* 字体大小 */
+}
+
+/* 关于部分副标题 */
+.about-section h3 {
+    color: var(--secondary-color);              /* 使用辅助色 */
+    margin: 20px 0 15px;                        /* 上下外边距 */
+}
+
+/* 关于部分段落 */
+.about-section p {
+    margin-bottom: 10px;                        /* 底部外边距 */
+    line-height: 1.6;                           /* 行高 */
+}
+
+/* 网盘下载信息框 */
+.pan-download-info {
+    background-color: var(--hover-color);       /* 使用悬停背景色 */
+    padding: 18px;                              /* 内边距 */
+    border-radius: var(--radius);               /* 圆角 */
+    margin: 20px 0;                             /* 上下外边距 */
+    border: 1px solid var(--border-color);     /* 使用主题边框色 */
+    box-shadow: var(--shadow);                  /* 阴影效果 */
+    backdrop-filter: var(--blur-effect);        /* 背景模糊 */
+    -webkit-backdrop-filter: var(--blur-effect); /* Safari背景模糊 */
+    transition: var(--transition);               /* 过渡动画 */
+}
+
+/* 网盘下载信息框悬停效果 */
+.pan-download-info:hover {
+    background-color: var(--card-bg);           /* 悬停时使用卡片背景 */
+    transform: translateY(-2px);                /* 向上移动 */
+}
+
+/* 网盘链接 */
+.pan-link {
+    color: var(--primary-color);                /* 使用主色调 */
+    text-decoration: none;                      /* 无下划线 */
+    margin-left: 5px;                           /* 左边距 */
+    transition: color 0.2s;                     /* 颜色过渡 */
+}
+
+/* 网盘链接悬停效果 */
+.pan-link:hover {
+    color: var(--secondary-color);              /* 悬停时使用辅助色 */
+}
+
+/* 提取码样式 */
+.extract-code {
+    background-color: var(--hover-color);       /* 使用悬停背景色 */
+    padding: 2px 8px;                           /* 内边距 */
+    border-radius: 4px;                         /* 圆角 */
+    font-family: monospace;                     /* 等宽字体 */
+    margin-left: 5px;                           /* 左边距 */
+    border: 1px solid var(--border-color);     /* 边框 */
+    color: var(--text-color);                   /* 使用主题文字色 */
+}
+
+/* B站链接 */
+.bilibili-link {
+    color: #00a1d6;                             /* B站蓝色 */
+    text-decoration: none;                      /* 无下划线 */
+    display: inline-flex;                       /* 行内弹性布局 */
+    align-items: center;                        /* 垂直居中 */
+    transition: color 0.2s;                     /* 颜色过渡 */
+}
+
+/* B站链接图标 */
+.bilibili-link i {
+    margin-right: 5px;                          /* 右边距 */
+    font-size: 1.2em;                           /* 图标大小 */
+}
+
+/* B站链接悬停效果 */
+.bilibili-link:hover {
+    color: #0088b3;                             /* 悬停时深蓝色 */
+}
+
+/* 黑夜模式下的B站链接 */
+[data-theme="dark"] .bilibili-link {
+    color: #0099FF;                             /* 黑夜模式下使用主题蓝色 */
+}
+
+[data-theme="dark"] .bilibili-link:hover {
+    color: #66b3ff;                             /* 黑夜模式悬停时使用浅蓝色 */
+}
+
+/* ========== 页脚样式 ========== */
+footer {
+    text-align: center;                         /* 文字居中 */
+    padding: 18px;                              /* 内边距 */
+    color: var(--text-secondary);               /* 使用次要文字色 */
+    font-size: 0.9em;                           /* 字体大小 */
+    background-color: var(--card-bg);           /* 使用卡片背景色 */
+    border-radius: var(--radius);               /* 圆角 */
+    margin-top: 20px;                           /* 顶部外边距 */
+    box-shadow: var(--shadow);                  /* 阴影效果 */
+    backdrop-filter: var(--blur-effect);        /* 背景模糊 */
+    -webkit-backdrop-filter: var(--blur-effect); /* Safari背景模糊 */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* 半透明边框 */
+}
+
+/* ========== 响应式设计（手机设备）========== */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;                          /* 减少容器内边距 */
     }
     
-    header h1 {
-        font-size: 18px;
+    .file-item {
+        flex-direction: column;                 /* 垂直排列 */
+        align-items: flex-start;                /* 左对齐 */
     }
     
-    .file-name {
-        font-size: 14px;
-    }
-    
-    .file-description {
-        font-size: 12px;
-    }
-    
-    .download-btn, .alt-download-btn {
-        padding: 5px 10px;
-        font-size: 12px;
+    .file-actions {
+        margin-top: 10px;                       /* 顶部外边距 */
+        width: 100%;                            /* 全宽 */
+        justify-content: space-between;         /* 两端对齐 */
     }
     
     .file-icon {
-        font-size: 18px;
+        margin-bottom: 10px;                    /* 底部外边距 */
+    }
+}
+
+/* ========== 响应式设计（小屏幕设备）========== */
+@media (max-width: 320px) {
+    /* 头部样式调整 */
+    header {
+        padding: 10px;                          /* 减少头部内边距 */
+    }
+    
+    /* 头部标题字体调整 */
+    header h1 {
+        font-size: 18px;                        /* 减小标题字体 */
+    }
+    
+    /* 文件名字体调整 */
+    .file-name {
+        font-size: 14px;                        /* 减小文件名字体 */
+    }
+    
+    /* 文件描述字体调整 */
+    .file-description {
+        font-size: 12px;                        /* 减小描述字体 */
+    }
+    
+    /* 下载按钮样式调整 */
+    .download-btn, .alt-download-btn {
+        padding: 5px 10px;                      /* 减少按钮内边距 */
+        font-size: 12px;                        /* 减小按钮字体 */
+    }
+    
+    /* 文件图标大小调整 */
+    .file-icon {
+        font-size: 18px;                        /* 减小图标大小 */
     }
 }
