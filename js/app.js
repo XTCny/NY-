@@ -25,6 +25,53 @@ function updateDateTime() {
     timeElement.textContent = `${hours}:${minutes}:${seconds}`;
 }
 
+/**
+ * 主题切换功能
+ */
+function initThemeToggle() {
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+    const body = document.body;
+    
+    // 从本地存储获取主题设置
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    setTheme(savedTheme);
+    
+    // 主题切换事件监听
+    themeToggle.addEventListener('click', () => {
+        const currentTheme = body.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        // 添加旋转动画
+        themeToggle.classList.add('rotating');
+        
+        setTimeout(() => {
+            setTheme(newTheme);
+            themeToggle.classList.remove('rotating');
+        }, 250);
+        
+        // 保存主题设置到本地存储
+        localStorage.setItem('theme', newTheme);
+    });
+}
+
+/**
+ * 设置主题
+ * @param {string} theme - 主题名称 ('light' 或 'dark')
+ */
+function setTheme(theme) {
+    const body = document.body;
+    const themeIcon = document.getElementById('theme-icon');
+    
+    if (theme === 'dark') {
+        body.setAttribute('data-theme', 'dark');
+        themeIcon.className = 'fas fa-sun';
+    } else {
+        body.removeAttribute('data-theme');
+        themeIcon.className = 'fas fa-moon';
+    }
+}
+
 // 文件数据（实际使用时可以从JSON文件或API获取）
 const fileData = {
     // 根目录文件
@@ -114,7 +161,7 @@ function generateFolderHTML(folder) {
 }
 
 /**
- * 切换文件夹展开/折叠状态
+ * 切换文件夹展开/收起
  * @param {string} folderId - 文件夹ID
  */
 function toggleFolder(folderId) {
@@ -147,7 +194,7 @@ function generateFileHTML(file) {
             </div>
             <div class="file-actions">
                 <a href="${file.directLink}" class="download-btn" target="_blank">
-                    <i class="fas fa-download"></i> 直链下载
+                    <i class="fas fa-download"></i> 下载
                 </a>
             </div>
         </div>
@@ -155,7 +202,7 @@ function generateFileHTML(file) {
 }
 
 /**
- * 根据文件类型返回对应的图标类名
+ * 根据文件类型获取图标
  * @param {string} fileType - 文件类型
  * @returns {string} - Font Awesome图标类名
  */
@@ -205,17 +252,17 @@ function getFileIcon(fileType) {
 }
 
 /**
- * 搜索功能实现
+ * 搜索文件
  */
 function searchFiles() {
     const searchInput = document.getElementById('search-input');
     const searchTerm = searchInput.value.toLowerCase();
     const fileList = document.querySelector('.file-list');
     
-    // 清空当前文件列表
+    // 清空文件列表
     fileList.innerHTML = '';
     
-    // 搜索并显示根目录文件
+    // 搜索根目录文件
     const matchedRootFiles = fileData.files.filter(file => 
         file.name.toLowerCase().includes(searchTerm) || 
         file.description.toLowerCase().includes(searchTerm)
@@ -224,9 +271,9 @@ function searchFiles() {
         fileList.innerHTML += generateFileHTML(file);
     });
     
-    // 递归搜索文件夹中的文件
+    // 搜索文件夹中的文件
     function searchInFolder(folder) {
-        // 匹配当前文件夹中的文件
+        // 搜索当前文件夹的文件
         const matchedFiles = folder.files ? folder.files.filter(file =>
             file.name.toLowerCase().includes(searchTerm) ||
             file.description.toLowerCase().includes(searchTerm)
@@ -242,7 +289,7 @@ function searchFiles() {
             };
         }).filter(result => result.hasMatches) : [];
 
-        // 判断是否有匹配的文件或文件夹名称
+        // 判断当前文件夹是否有匹配项
         const hasMatches = matchedFiles.length > 0 || 
                           matchedSubFolders.length > 0 || 
                           folder.name.toLowerCase().includes(searchTerm);
@@ -254,7 +301,7 @@ function searchFiles() {
         };
     }
 
-    // 搜索并显示文件夹中的内容
+    // 处理搜索结果显示
     fileData.folders.forEach(folder => {
         const searchResult = searchInFolder(folder);
         
@@ -263,7 +310,7 @@ function searchFiles() {
             folderElement.className = 'folder';
             folderElement.id = folder.id;
             
-            // 生成文件夹HTML，包括匹配的文件和子文件夹
+            // 构建文件夹HTML内容（只显示匹配的项）
             let folderContent = '';
             if (searchResult.matchedFiles.length > 0) {
                 folderContent += searchResult.matchedFiles.map(file => generateFileHTML(file)).join('');
@@ -291,7 +338,7 @@ function searchFiles() {
         }
     });
     
-    // 如果没有搜索结果，显示提示信息
+    // 如果没有搜索结果
     if (fileList.children.length === 0) {
         fileList.innerHTML = '<div class="no-files">未找到匹配的文件</div>';
     }
@@ -304,12 +351,12 @@ function showAllFiles() {
     const fileList = document.querySelector('.file-list');
     fileList.innerHTML = '';
     
-    // 生成根目录文件
+    // 显示根目录文件
     fileData.files.forEach(file => {
         fileList.innerHTML += generateFileHTML(file);
     });
 
-    // 生成文件夹
+    // 显示文件夹
     fileData.folders.forEach(folder => {
         fileList.innerHTML += generateFolderHTML(folder);
     });
@@ -317,7 +364,7 @@ function showAllFiles() {
 
 // 页面加载完成后初始化
 document.addEventListener('DOMContentLoaded', function() {
-    // 添加搜索事件监听
+    // 初始化搜索功能
     const searchInput = document.getElementById('search-input');
     searchInput.addEventListener('input', function() {
         if (this.value.trim() === '') {
@@ -327,7 +374,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // 更新时间显示
+    // 初始化主题切换功能
+    initThemeToggle();
+
+    // 初始化时间显示
     updateDateTime();
     setInterval(updateDateTime, 1000);
 
