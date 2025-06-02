@@ -93,9 +93,16 @@ const fileData = {
                         {
                             id: 4,
                             name: "小天才全系列root工具.zip",
-                            description: "5月24日的还热乎呢，小天才root工具",
+                            description: "5月24的，sky小天才root工具",
                             type: "zip",
                             directLink: "https://vip.123pan.cn/1841432992/13258069"
+                        },
+                        {
+                            id: 5,
+                            name: "【我就有QFIL】QPST.rar",
+                            description: "高通刷工具",
+                            type: "rar",
+                            directLink: "https://vip.123pan.cn/1841432992/13562076"
                         }
                     ]
                 },
@@ -123,6 +130,40 @@ const fileData = {
                             description: "隐藏root后不会封号，其实不隐藏封号概率也很小",
                             type: "apk",
                             directLink: "https://vip.123pan.cn/1841432992/13257823"
+                        }
+                    ]
+                },
+                {
+                    id: "modules",
+                    name: "magisk模块",
+                    files: [
+                        {
+                            id: 1,
+                            name: "伪装Z10模块-安卓8.1机型",
+                            description: "获得Z10表盘等",
+                            type: "zip",
+                            directLink: "https://vip.123pan.cn/1841432992/13562126"
+                        },
+                        {
+                            id: 2,
+                            name: "NatureOS3-3.7-wear4100机型通刷-noversion",
+                            description: "",
+                            type: "zip",
+                            directLink: "https://vip.123pan.cn/1841432992/13562125",
+                        },
+                        {
+                            id: 3,
+                            name: "NatureOS3-1.4-wear4100机型附属模块1",
+                            description: "",
+                            type: "zip",
+                            directLink: "https://vip.123pan.cn/1841432992/13562124",
+                        },
+                        {
+                            id: 4,
+                            name: "【先解压】CaremeOSPro_2.7.0_Pre1",
+                            description: "",
+                            type: "zip",
+                            directLink: "https://vip.123pan.cn/1841432992/13562121",
                         }
                     ]
                 }
@@ -400,7 +441,7 @@ const topicData = {
             
             
             <h3>🏆 捐赠名单</h3>
-            <p>夕辞吖不常在线 1元  琴家 20元</p>
+            <p>夕辞吖不常在线1元 \n1元琴家 20元</p>
 
         `
     },
