@@ -409,6 +409,16 @@ function showAllFiles() {
 
 // 专题内容数据
 const topicData = {
+    website: {
+        title: '推荐网址',
+        content: `
+            <h2>推荐的网址</h2>
+            <p>群里总是有人问我教程和文件所以我整合了一下一些网址</p>
+            <p>早茶光的root教程：<a href="https://www.yuque.com/yuqueyonghul9lu5p/vl3v27/ta3g9zb23nd2rrvd?#" target="_blank" class="XTCroot-link"><i class="fa-solid fa-lightbulb"></i> 小天才root教程</a></p>
+            <p>早茶光123云盘分享的root文件和小天才应用全版本：<a href="https://www.123pan.com/s/SFpbVv-UDGQv.html" target="_blank" class="XTC123file-link"><i class="fa-regular fa-file"></i> 小天才文件</a></p>
+            <p>ChKSz做的文件分享站：<a href="https://www.123pan.com/s/SFpbVv-UDGQv.html" target="_blank" class="ChKSzfile-link"><i class="fa-regular fa-file"></i> ChKSz文件分享站</a></p>
+        `
+    },
     about: {
         title: '关于我们',
         content: `
