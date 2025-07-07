@@ -88,12 +88,12 @@ const fileData = {
             folders: [
                 {
                     id: "XTCRootTools",
-                    name: "root工具",
+                    name: "root",
                     files: [
                         {
                             id: 4,
                             name: "小天才全系列root工具.zip",
-                            description: "5月24的，sky小天才root工具",
+                            description: "sky小天才root工具",
                             type: "zip",
                             directLink: "https://vip.123pan.cn/1841432992/13258069"
                         },
@@ -103,7 +103,29 @@ const fileData = {
                             description: "高通刷工具",
                             type: "rar",
                             directLink: "https://vip.123pan.cn/1841432992/13562076"
+                        },
+                       {
+                            id: 6,
+                            name: "（需解压)安卓8.1使用EDXP",
+                            description: "",
+                            type: "zip",
+                            directLink: "https://vip.123pan.cn/1841432992/14063496"
+                        },
+                      {
+                            id: 7,
+                            name: "scrcpy投屏",
+                            description: "",
+                            type: "zip",
+                            directLink: "https://vip.123pan.cn/1841432992/14063612"
+                        },
+                      {
+                            id: 8,
+                            name: "驱动",
+                            description: "",
+                            type: "zip",
+                            directLink: "https://vip.123pan.cn/1841432992/14063613"
                         }
+                      
                     ]
                 },
                 {
@@ -115,7 +137,14 @@ const fileData = {
                             name: "逆叶box.apk",
                             description: "自制手表工具箱",
                             type: "apk",
-                            directLink: "https://vip.123pan.cn/1841432992/13054668"
+                            directLink: "https://vip.123pan.cn/1841432992/14077845"
+                        },
+                      {
+                            id: 5,
+                            name: "解限_小天才智能输入法",
+                            description: "",
+                            type: "zip",
+                            directLink: "https://vip.123pan.cn/1841432992/14276746"
                         },
                         {
                             id: 2,
@@ -123,6 +152,13 @@ const fileData = {
                             description: "最强手势软件",
                             type: "apk",
                             directLink: "https://vip.123pan.cn/1841432992/13257824"
+                        },
+                      {
+                            id: 6,
+                            name: "弦应用商店2.2.6",
+                            description: "",
+                            type: "zip",
+                            directLink: "https://vip.123pan.cn/1841432992/14276842"
                         },
                         {
                             id: 3,
@@ -164,6 +200,41 @@ const fileData = {
                             description: "",
                             type: "zip",
                             directLink: "https://vip.123pan.cn/1841432992/13562121",
+                        },
+                      {
+                            id: 6,
+                            name: "全主题模块1.6.0fix",
+                            description: "",
+                            type: "zip",
+                            directLink: "https://vip.123pan.cn/1841432992/13921872"
+                        },
+                      {
+                            id: 5,
+                            name: "[Z8A_V1.6.7][建议立刻刷入]XTCPatch_additional",
+                            description: "",
+                            type: "zip",
+                            directLink: "https://vip.123pan.cn/1841432992/14063471"
+                        },
+                      {
+                            id: 5,
+                            name: "[Z9_3.6.5]XTCPatch_Additional",
+                            description: "",
+                            type: "zip",
+                            directLink: "https://vip.123pan.cn/1841432992/14063472"
+                        },
+                      {
+                            id: 5,
+                            name: "[DFB_2.8.5]XTCPatch_Additional",
+                            description: "",
+                            type: "zip",
+                            directLink: "https://vip.123pan.cn/1841432992/14063470",
+                        {
+                            id: 5,
+                            name: "表Q消息接收修复-V2.1",
+                            description: "",
+                            type: "zip",
+                            directLink: "https://vip.123pan.cn/1841432992/14063473"
+                        }
                         }
                     ]
                 }
