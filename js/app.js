@@ -227,14 +227,21 @@ const fileData = {
                             name: "[DFB_2.8.5]XTCPatch_Additional",
                             description: "",
                             type: "zip",
-                            directLink: "https://vip.123pan.cn/1841432992/14063470",
-                        {
+                            directLink: "https://vip.123pan.cn/1841432992/14063470"
+                        },
+                      {
                             id: 5,
                             name: "表Q消息接收修复-V2.1",
                             description: "",
                             type: "zip",
                             directLink: "https://vip.123pan.cn/1841432992/14063473"
-                        }
+                        },
+                      {
+                            id: 5,
+                            name: "表Q消息发送修复-V2.1",
+                            description: "",
+                            type: "zip",
+                            directLink: "https://vip.123pan.cn/1841432992/14063474"
                         }
                     ]
                 }
