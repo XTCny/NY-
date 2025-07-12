@@ -143,7 +143,7 @@ const fileData = {
                             id: 5,
                             name: "解限_小天才智能输入法",
                             description: "",
-                            type: "zip",
+                            type: "apk",
                             directLink: "https://vip.123pan.cn/1841432992/14276746"
                         },
                         {
@@ -157,7 +157,7 @@ const fileData = {
                             id: 6,
                             name: "弦应用商店2.2.6",
                             description: "",
-                            type: "zip",
+                            type: "apk",
                             directLink: "https://vip.123pan.cn/1841432992/14276842"
                         },
                         {
