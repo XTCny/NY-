@@ -95,7 +95,7 @@ const fileData = {
                             name: "小天才全系列root工具.zip",
                             description: "sky小天才root工具",
                             type: "zip",
-                            directLink: "https://vip.123pan.cn/1841432992/13258069"
+                            directLink: "https://panurl.cn/down.php/7047d500dded83b7f1eca8c772ac1de3.7z"
                         },
                         {
                             id: 5,
@@ -121,9 +121,16 @@ const fileData = {
                       {
                             id: 8,
                             name: "驱动",
-                            description: "",
+                            description: "root必装",
                             type: "zip",
-                            directLink: "https://vip.123pan.cn/1841432992/14063613"
+                            directLink: "https://panurl.cn/down.php/8059f129926942dda29c3cc43212ec52.7z"
+                        },
+                        {
+                            id: 8,
+                            name: "D3工具箱1.0.2",
+                            description: "兼容至Win7",
+                            type: "zip",
+                            directLink: "https://panurl.cn/down.php/6070b6ff105ef7703dbce1a522828ea4.zip"
                         }
                       
                     ]
@@ -185,7 +192,7 @@ const fileData = {
                             name: "伪装Z10模块-安卓8.1机型",
                             description: "获得Z10表盘等",
                             type: "zip",
-                            directLink: "https://vip.123pan.cn/1841432992/13562126"
+                            directLink: "https://panurl.cn/down.php/6efd13ea27193b88ab4c1172bd8c201b.zip"
                         },
                         {
                             id: 2,
@@ -206,7 +213,7 @@ const fileData = {
                             name: "【先解压】CaremeOSPro_2.7.0_Pre1",
                             description: "",
                             type: "zip",
-                            directLink: "https://vip.123pan.cn/1841432992/13562121",
+                            directLink: "https://panurl.cn/down.php/71f5c9ce448cdde053f4a73827842f19.zip",
                         },
                       {
                             id: 6,
