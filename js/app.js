@@ -498,17 +498,18 @@ const topicData = {
         title: '推荐网址',
         content: `
             <h2>推荐的网址</h2>
-            <p>群里总是有人问我教程和文件所以我整合了一下一些网址</p>
-            <p>早茶光的root教程：<a href="https://www.yuque.com/yuqueyonghul9lu5p/vl3v27/ta3g9zb23nd2rrvd?#" target="_blank" class="XTCroot-link"><i class="fa-solid fa-lightbulb"></i> 小天才root教程</a></p>
-            <p>早茶光123云盘分享的root文件和小天才应用全版本：<a href="https://www.123pan.com/s/SFpbVv-UDGQv.html" target="_blank" class="XTC123file-link"><i class="fa-regular fa-file"></i> 小天才文件</a></p>
-            <p>ChKSz做的文件分享站：<a href="https://www.123pan.com/s/SFpbVv-UDGQv.html" target="_blank" class="ChKSzfile-link"><i class="fa-regular fa-file"></i> ChKSz文件分享站</a></p>
+            <p>总是有人问我教程和文件所以我整理了一下一些网址</p>
+            <p>文字root教程：www.yuque.com/yuqueyonghul9lu5p/vl3v27/ta3g9zb23nd2rrvd?#，/n视频root教程：www.bilibili.com/video/BV1m1YLePEk1/，救砖视频：www.bilibili.com/video/BV1hFcmeGE7e/，/n解决验证异常离线ota视频https://www.bilibili.com/video/BV17wR8YxEyz/</p>
+            <p>root文件全应用：https://www.123pan.com/s/SFpbVv-UDGQv.html</a></p>
+            <p>WCG文件分享站：chksz.top/XTC</p>
+            <p>我的文件分享站：nyweb.top</p>
         `
     },
     about: {
         title: '关于我们',
         content: `
             <h2>关于本站</h2>
-            <p>这是我做的一个简单的文件分享站，如果直链下载不可用，请使用网盘下载。</p>
+            <p>这是我做的一个的文件分享站，如果直链下载不可用，请使用网盘下载。</p>
             
             <div class="pan-download-info">
                 <h3>网盘下载通道</h3>
@@ -518,25 +519,22 @@ const topicData = {
             </div>
             
             <p>作者：逆叶</p>
-            <p>QQ群：876331156</p>
+            <p>QQ群：876331156，微信：vx3784446092</p>
             <p>bilibili：<a href="https://space.bilibili.com/3546773477919038?spm_id_from=333.788.0.0" target="_blank" class="bilibili-link"><i class="fab fa-bilibili"></i> 访问作者B站主页</a></p>
+            <p>QQ群：876331156，微信：vx3784446092</p>
         `
     },
     donate: {
         title: '支持我们',
         content: `
-            <p>本站直链下载都需要123云盘的会员，但是逆叶没有money，所以需要你们的捐赠，捐赠者会在我开发的大部分项目中显示，1元以下不会展示。捐赠请备注展示的名字</p>
+            <p>本站直链下载都需要123云盘的会员，域名也需要钱，所以需要你们的捐赠，捐赠者会在我开发的项目中和QQ群显示，1元以下不会展示。捐赠请备注展示的名字，捐赠大于等于5元可以找我激活逆叶box,apk</p>
             
             <h3>💰 支持方式</h3>
-            <p><strong>微信支付：</strong></p>
-            <img src="icons/WeChat_qr.jpg" alt="微信支付二维码" style="max-width: 200px; margin-bottom: 20px;">
-            
-            <p><strong>支付宝：</strong></p>
-            <img src="icons/alipay_qr.jpg" alt="支付宝支付二维码" style="max-width: 200px; margin-bottom: 20px;">
+            <p><strong>加入QQ群后查看群公告的二维码</strong></p>
             
             
             <h3>🏆 捐赠名单</h3>
-            <p>夕辞吖不常在线1元 \n1元琴家 20元</p>
+            <p>夕辞吖不常在线1元 \n1元琴家 20元\n 云控中 5元</p>
 
         `
     },
@@ -547,13 +545,17 @@ const topicData = {
             <h3>📝 上传方式</h3>
             
 
-            <p>联系逆叶的QQ：3784446092，申请请备注文件上传，然后把文件发我，\n我或审核文件然后发布到网站</p>
+            <p>QQ或微信联系我，申请好友请备注文件上传，然后把文件发我就行</p>
         `
     },
     announcement: {
         title: '公告',
         content: `
             <h2>📢 最新公告</h2>
+             <div style="background: rgba(40, 167, 69, 0.1); padding: 1rem; border-radius: 8px; margin-bottom: 1rem; border-left: 4px solid #28a745;">
+                <h3>域名更改 (2025-07-26)</h3>
+                <p>域名已更改为nyweb.top，已开启强制使用https</p>
+            </div>
             
             <div style="background: rgba(40, 167, 69, 0.1); padding: 1rem; border-radius: 8px; margin-bottom: 1rem; border-left: 4px solid #28a745;">
                 <h3>🎉 网站功能大更新 (2025-06-01)</h3>
