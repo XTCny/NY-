@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>小天才动态效验码生成器</title>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="generator" id="newADBGenerator">
+            <h2>新ADB调试开关动态效验码</h2>
+            <label for="newADBInput"></label><input type="text" id="newADBInput" placeholder="输入">
+            <label for="newADBOutput"></label><input type="text" id="newADBOutput" placeholder="输出">
+            <button onclick="generateNewADBCode()">生成</button>
+        </div>
+        <div class="generator clear" id="oldADBGenerator">
+            <h2>旧ADB调试开关动态效验码</h2>
+            <label for="oldADBInput"></label><input type="text" id="oldADBInput" placeholder="输入">
+            <label for="oldADBOutput"></label><input type="text" id="oldADBOutput" placeholder="输出">
+            <button onclick="generateOldADBCode()">生成</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="generator" id="newSelfTestGenerator">
+            <h2>新自检模式动态效验码</h2>
+            <label for="newSelfTestInput"></label><input type="text" id="newSelfTestInput" placeholder="输入">
+            <label for="newSelfTestOutput"></label><input type="text" id="newSelfTestOutput" placeholder="输出">
+            <button onclick="generateNewSelfTestCode()">生成</button>
+        </div>
+        <div class="generator" id="oldSelfTestGenerator">
+            <h2>旧自检模式动态效验码</h2>
+            <label for="oldSelfTestInput"></label><input type="text" id="oldSelfTestInput" placeholder="输入">
+            <label for="oldSelfTestOutput"></label><input type="text" id="oldSelfTestOutput" placeholder="输出">
+            <button onclick="generateOldSelfTestCode()">生成</button>
+        </div>
+    </div>
+</div>
+<script src="./script.js"></script>
+</body>
+</html>
