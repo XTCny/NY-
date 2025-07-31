@@ -575,21 +575,28 @@ const topicData = {
 };
 
 /**
- * 初始化专题功能
+ * 初始化导航功能
  */
-function initTopics() {
+function initNavigation() {
     const filesBtn = document.getElementById('files-btn');
+    const toolsBtn = document.getElementById('tools-btn');
     const topicsBtn = document.getElementById('topics-btn');
     const filesPage = document.getElementById('files-page');
+    const toolsPage = document.getElementById('tools-page');
     const topicsPage = document.getElementById('topics-page');
     const topicsGrid = document.querySelector('.topics-grid');
     const topicDetail = document.getElementById('topic-detail');
     const backBtn = document.getElementById('back-btn');
     const topicCards = document.querySelectorAll('.topic-card');
+    const toolCards = document.querySelectorAll('.tool-card');
     
     // 导航按钮点击事件
     filesBtn.addEventListener('click', () => {
         switchPage('files');
+    });
+    
+    toolsBtn.addEventListener('click', () => {
+        switchPage('tools');
     });
     
     topicsBtn.addEventListener('click', () => {
@@ -604,6 +611,17 @@ function initTopics() {
         });
     });
     
+    // 工具卡片点击事件
+    toolCards.forEach(card => {
+        card.addEventListener('click', () => {
+            const toolUrl = card.getAttribute('data-url');
+            if (toolUrl) {
+                // 直接打开指定的URL
+                window.open(toolUrl, '_blank');
+            }
+        });
+    });
+    
     // 返回按钮点击事件
     backBtn.addEventListener('click', () => {
         showTopicsGrid(); // 返回到专题网格
@@ -612,28 +630,41 @@ function initTopics() {
 
 /**
  * 切换页面
- * @param {string} page - 页面名称 ('files' 或 'topics')
+ * @param {string} page - 页面名称 ('files', 'tools' 或 'topics')
  */
 function switchPage(page) {
     const filesBtn = document.getElementById('files-btn');
+    const toolsBtn = document.getElementById('tools-btn');
     const topicsBtn = document.getElementById('topics-btn');
     const filesPage = document.getElementById('files-page');
+    const toolsPage = document.getElementById('tools-page');
     const topicsPage = document.getElementById('topics-page');
     const searchContainer = document.querySelector('.search-container');
+    
+    // 重置所有按钮状态
+    filesBtn.classList.remove('active');
+    toolsBtn.classList.remove('active');
+    topicsBtn.classList.remove('active');
+    
+    // 隐藏所有页面
+    filesPage.classList.add('hidden');
+    toolsPage.classList.add('hidden');
+    topicsPage.classList.add('hidden');
     
     if (page === 'files') {
         // 切换到文件页面
         filesBtn.classList.add('active');
-        topicsBtn.classList.remove('active');
         filesPage.classList.remove('hidden');
-        topicsPage.classList.add('hidden');
         searchContainer.style.display = 'block'; // 显示搜索框
+    } else if (page === 'tools') {
+        // 切换到工具页面
+        toolsBtn.classList.add('active');
+        toolsPage.classList.remove('hidden');
+        searchContainer.style.display = 'none'; // 隐藏搜索框
     } else if (page === 'topics') {
         // 切换到专题页面
         topicsBtn.classList.add('active');
-        filesBtn.classList.remove('active');
         topicsPage.classList.remove('hidden');
-        filesPage.classList.add('hidden');
         searchContainer.style.display = 'none'; // 隐藏搜索框
         
         // 立即确保显示专题网格，隐藏专题详情
@@ -721,8 +752,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // 初始化主题切换功能
     initThemeToggle();
 
-    // 初始化专题功能
-    initTopics();
+    // 初始化导航功能
+    initNavigation();
 
     // 初始化时间显示
     updateDateTime();
