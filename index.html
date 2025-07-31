@@ -27,11 +27,15 @@
                 <div class="nav-buttons">
                     <button class="nav-btn active" id="files-btn">
                         <i class="fas fa-folder"></i>
-                        <span>文件列表</span>
+                        <span>文件</span>
+                    </button>
+                    <button class="nav-btn" id="tools-btn">
+                        <i class="fas fa-tools"></i>
+                        <span>工具</span>
                     </button>
                     <button class="nav-btn" id="topics-btn">
-                        <i class="fas fa-newspaper"></i>
-                        <span>专题中心</span>
+                        <i class="fas fa-sticky-note"></i>
+                        <span>笔记</span>
                     </button>
                 </div>
                 <div class="search-container">
@@ -45,6 +49,41 @@
             <div class="page-content" id="files-page">
                 <div class="file-list">
                     <!-- 由JavaScript动态生成 -->
+                </div>
+            </div>
+            
+            <!-- 工具页面 -->
+            <div class="page-content hidden" id="tools-page">
+                <div class="tools-grid">
+                    <!-- XTCcode工具 -->
+                    <div class="tool-card" data-url="https://nyweb.top/xtccode/">
+                        <div class="tool-icon">
+                            <i class="fas fa-calculator"></i>
+                        </div>
+                        <h3>XTCcode</h3>
+                        <p>小天才算码器</p>
+                    </div>
+                    
+                    <!-- AI对话工具 -->
+                    <div class="tool-card" data-url="https://nyweb.top/aichat/">
+                        <div class="tool-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <h3>AI对话</h3>
+                        <p>智能聊天助手</p>
+                    </div>
+                    
+                    <!-- 可以在这里添加更多工具 -->
+                    <!-- 示例工具卡片 -->
+                    <!--
+                    <div class="tool-card" data-url="https://example.com">
+                        <div class="tool-icon">
+                            <i class="fas fa-calculator"></i>
+                        </div>
+                        <h3>工具名称</h3>
+                        <p>工具描述</p>
+                    </div>
+                    -->
                 </div>
             </div>
             
@@ -111,6 +150,7 @@
                 </div>
             </div>
         </main>
+    </div>
 
         <footer>
             <p>逆叶文件分享站 | 使用GitHub Pages托管</p>
