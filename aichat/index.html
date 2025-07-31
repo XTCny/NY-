@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI对话助手 - 逆叶文件分享站</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #007bff;
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --text-secondary: #666666;
+            --border-color: #e9ecef;
+            --input-bg: #ffffff;
+            --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #1a1a1a;
+            --card-bg: #2d2d2d;
+            --text-color: #ffffff;
+            --text-secondary: #cccccc;
+            --border-color: #404040;
+            --input-bg: #3d3d3d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            transition: all 0.3s ease;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .header h1 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 2rem;
+        }
+
+        .header p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .chat-container {
+            flex: 1;
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            min-height: 500px;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .message {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .message.user-message {
+            flex-direction: row-reverse;
+        }
+
+        .message-content {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            max-width: 80%;
+            padding: 12px 16px;
+            border-radius: 18px;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        .bot-message .message-content {
+            background: var(--border-color);
+            color: var(--text-color);
+        }
+
+        .user-message .message-content {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .message-content i {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .chat-input-container {
+            display: flex;
+            padding: 20px;
+            border-top: 1px solid var(--border-color);
+            gap: 10px;
+        }
+
+        #chat-input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 25px;
+            background: var(--input-bg);
+            color: var(--text-color);
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        #chat-input:focus {
+            border-color: var(--primary-color);
+        }
+
+        #send-btn {
+            width: 45px;
+            height: 45px;
+            border: none;
+            border-radius: 50%;
+            background: var(--primary-color);
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        #send-btn:hover:not(:disabled) {
+            background: #0056b3;
+            transform: scale(1.05);
+        }
+
+        #send-btn:disabled {
+            background: var(--border-color);
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        .chat-loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 15px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .chat-loading.hidden {
+            display: none;
+        }
+
+        .welcome-message {
+            text-align: center;
+            padding: 20px;
+            color: var(--text-secondary);
+        }
+
+        /* 滚动条样式 */
+        .chat-messages::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .chat-messages::-webkit-scrollbar-track {
+            background: var(--bg-color);
+        }
+
+        .chat-messages::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 3px;
+        }
+
+        .chat-messages::-webkit-scrollbar-thumb:hover {
+            background: var(--text-secondary);
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .header h1 {
+                font-size: 1.5rem;
+            }
+            
+            .chat-container {
+                min-height: 400px;
+            }
+            
+            .chat-messages {
+                padding: 15px;
+            }
+            
+            .chat-input-container {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <button class="theme-toggle" id="theme-toggle">
+                <i class="fas fa-moon"></i>
+            </button>
+            <h1><i class="fas fa-robot"></i> AI对话助手</h1>
+            <p>智能聊天机器人，随时为您解答问题</p>
+        </div>
+
+        <div class="chat-container">
+            <div id="chat-messages" class="chat-messages">
+                <div class="message bot-message">
+                    <div class="message-content">
+                        <i class="fas fa-robot"></i>
+                        <span>你好！我是AI助手，有什么可以帮助你的吗？</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chat-loading hidden" id="chat-loading">
+                <i class="fas fa-spinner fa-spin"></i>
+                <span>AI正在思考中...</span>
+            </div>
+            
+            <div class="chat-input-container">
+                <input type="text" id="chat-input" placeholder="输入你的消息..." maxlength="200">
+                <button id="send-btn" disabled>
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 主题切换功能
+        function initThemeToggle() {
+            const themeToggle = document.getElementById('theme-toggle');
+            const body = document.body;
+            
+            // 检查本地存储的主题设置
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            body.setAttribute('data-theme', savedTheme);
+            updateThemeIcon(savedTheme);
+            
+            themeToggle.addEventListener('click', () => {
+                const currentTheme = body.getAttribute('data-theme');
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                
+                body.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+                updateThemeIcon(newTheme);
+            });
+        }
+        
+        function updateThemeIcon(theme) {
+            const icon = document.querySelector('#theme-toggle i');
+            icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        }
+
+        // AI对话功能
+        async function sendMessageToAI(message) {
+            const apiUrl = `http://api.corexwear.com/chat/index.php?msg=${encodeURIComponent(message)}`;
+            
+            const requestOptions = {
+                method: 'GET',
+                redirect: 'follow'
+            };
+            
+            try {
+                const response = await fetch(apiUrl, requestOptions);
+                const result = await response.text();
+                const data = JSON.parse(result);
+                return data.content || '抱歉，我现在无法回答这个问题。';
+            } catch (error) {
+                console.error('AI API调用失败:', error);
+                return '抱歉，网络连接出现问题，请稍后再试。';
+            }
+        }
+
+        function addMessageToChat(message, isUser = false) {
+            const chatMessages = document.getElementById('chat-messages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
+            
+            const messageContent = document.createElement('div');
+            messageContent.className = 'message-content';
+            
+            const icon = document.createElement('i');
+            icon.className = isUser ? 'fas fa-user' : 'fas fa-robot';
+            messageContent.appendChild(icon);
+            
+            const span = document.createElement('span');
+            span.textContent = message;
+            messageContent.appendChild(span);
+            
+            messageDiv.appendChild(messageContent);
+            chatMessages.appendChild(messageDiv);
+            
+            // 滚动到底部
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function showChatLoading(show = true) {
+            const loading = document.getElementById('chat-loading');
+            const sendBtn = document.getElementById('send-btn');
+            const chatInput = document.getElementById('chat-input');
+            
+            if (show) {
+                loading.classList.remove('hidden');
+                sendBtn.disabled = true;
+                chatInput.disabled = true;
+            } else {
+                loading.classList.add('hidden');
+                sendBtn.disabled = chatInput.value.trim() === '';
+                chatInput.disabled = false;
+            }
+        }
+
+        async function handleSendMessage() {
+            const chatInput = document.getElementById('chat-input');
+            const message = chatInput.value.trim();
+            
+            if (!message) return;
+            
+            // 添加用户消息
+            addMessageToChat(message, true);
+            chatInput.value = '';
+            
+            // 显示加载状态
+            showChatLoading(true);
+            
+            try {
+                // 调用AI API
+                const aiResponse = await sendMessageToAI(message);
+                
+                // 添加AI回复
+                addMessageToChat(aiResponse, false);
+            } catch (error) {
+                addMessageToChat('抱歉，发生了错误，请稍后再试。', false);
+            } finally {
+                // 隐藏加载状态
+                showChatLoading(false);
+                chatInput.focus();
+            }
+        }
+
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            const chatInput = document.getElementById('chat-input');
+            const sendBtn = document.getElementById('send-btn');
+            
+            // 初始化主题切换
+            initThemeToggle();
+            
+            // 输入框事件
+            chatInput.addEventListener('input', () => {
+                const hasText = chatInput.value.trim() !== '';
+                sendBtn.disabled = !hasText;
+            });
+            
+            // 回车发送消息
+            chatInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter' && !sendBtn.disabled) {
+                    handleSendMessage();
+                }
+            });
+            
+            // 发送按钮点击事件
+            sendBtn.addEventListener('click', handleSendMessage);
+            
+            // 聚焦到输入框
+            chatInput.focus();
+        });
+    </script>
+</body>
+</html>
