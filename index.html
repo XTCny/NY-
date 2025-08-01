@@ -14,15 +14,43 @@
     <div class="theme-toggle" id="theme-toggle">
         <i class="fas fa-moon" id="theme-icon"></i>
     </div>
+
+    <!-- 公告弹窗 -->
+    <div class="announcement-modal" id="announcement-modal">
+        <div class="announcement-content">
+            <div class="announcement-header">
+                <h3>📢 网站公告</h3>
+                <button class="close-announcement" id="close-announcement">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="announcement-body">
+                <p>🎉 欢迎来到ny官网</p>
+                <p>1. 本站网站：<a href="https://nyweb.top" target="_blank">nyweb.top</a></p>
+                <p>2. 我的个人主页网站：<a href="https://nyweb.top/blog/" target="_blank">https://nyweb.top/blog/</a></p>
+                <p>2. 本站文件网盘链接：<a href="https://www.123684.com/s/QtPDTd-oRl5v" target="_blank">123网盘提取码：zlVV</a></p>
+                <p>交流群：<strong>876331156</strong></p>
+            </div>
+        </div>
+    </div>
     
     <div class="container">
+        <!-- 左上角头像 -->
+        <div class="top-avatar">
+            <div class="avatar-link" id="avatar-link" title="访问ny的个人博客">
+                <img src="blog/avatar.svg" alt="ny" class="header-avatar">
+            </div>
+        </div>
+        
         <div class="datetime-display" id="datetime-display">
             <span id="current-date"></span>
             <span id="current-time"></span>
         </div>
+        
         <header>
-            <h1>逆叶简易文件分享站</h1>
-            <p>轻松下载文件</p>
+            <h1>nyweb</h1>
+            <p id="daily-quote">轻松下载文件</p>
+            
             <div class="nav-container">
                 <div class="nav-buttons">
                     <button class="nav-btn active" id="files-btn">
@@ -60,8 +88,8 @@
                         <div class="tool-icon">
                             <i class="fas fa-calculator"></i>
                         </div>
-                        <h3>XTCcode</h3>
-                        <p>小天才算码器</p>
+                        <h3>算码</h3>
+                        <p>小天才动态校验码计算</p>
                     </div>
                     
                     <!-- AI对话工具 -->
@@ -140,7 +168,7 @@
                     <div class="topic-header">
                         <button class="back-btn" id="back-btn">
                             <i class="fas fa-arrow-left"></i>
-                            <span>返回专题</span>
+                            <span>返回</span>
                         </button>
                         <h2 id="topic-title">专题标题</h2>
                     </div>
@@ -150,13 +178,6 @@
                 </div>
             </div>
         </main>
-    </div>
-
-        <footer>
-            <p>逆叶文件分享站 | 使用GitHub Pages托管</p>
-        </footer>
-    </div>
-
     <script src="js/app.js"></script>
 </body>
 </html>
