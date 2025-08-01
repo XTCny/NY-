@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ny的个人博客</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 头部区域 -->
+        <header class="header">
+            <div class="avatar-section">
+                <img src="avatar.svg" alt="ny" class="avatar">
+                <h1 class="name">ny</h1>
+                <p class="title">小白开发者 & XTC破解爱好者</p>
+                <div class="social-links">
+                    <a href="https://github.com/XTCny" target="_blank" title="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://space.bilibili.com/3546773477919038" target="_blank" title="哔哩哔哩">
+                        <i class="fab fa-bilibili"></i>
+                    </a>
+                    <a href="https://nyweb.top" target="_blank" title="个人网站">
+                        <i class="fas fa-home"></i>
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <!-- 导航栏 -->
+        <nav class="nav">
+            <button class="nav-btn" data-section="tags">
+                <i class="fas fa-tags"></i>
+                标签
+            </button>
+            <button class="nav-btn" data-section="projects">
+                <i class="fas fa-code"></i>
+                项目展示
+            </button>
+            <button class="nav-btn" data-section="timeline">
+                <i class="fas fa-clock"></i>
+                时间线
+            </button>
+        </nav>
+
+        <!-- 主要内容区域 -->
+        <main class="main">
+            <!-- 标签云 -->
+            <section id="tags" class="section">
+                <h2>标签云</h2>
+                <div class="tag-cloud">
+                    <span class="cloud-tag size-large">JavaScript</span>
+                    <span class="cloud-tag size-medium">Python</span>
+                    <span class="cloud-tag size-large">Web开发</span>
+                    <span class="cloud-tag size-small">Android</span>
+                    <span class="cloud-tag size-medium">Git</span>
+                    <span class="cloud-tag size-large">开源</span>
+                    <span class="cloud-tag size-small">kotlin</span>
+                    <span class="cloud-tag size-medium">C++</span>
+                </div>
+            </section>
+
+            <!-- 项目展示 -->
+            <section id="projects" class="section">
+                <h2>项目展示</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <h3>ny官网</h3>
+                        <p>支持文件下载，工具和笔记多种功能，支持直链下载文件。</p>
+                        <div class="project-tags">
+                            <span class="tag">HTML</span>
+                            <span class="tag">CSS</span>
+                            <span class="tag">JavaScript</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://nyweb.top" target="_blank" class="project-link">
+                                <i class="fas fa-external-link-alt"></i>
+                                访问网站
+                            </a>
+                            <a href="https://github.com/XTCny/nyweb" target="_blank" class="project-link">
+                                <i class="fab fa-github"></i>
+                                源码
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-icon">
+                            <i class="fas fa-calculator"></i>
+                        </div>
+                        <h3>小天才算码</h3>
+                        <p>支持计算小天才动态校验码。</p>
+                        <div class="project-tags">
+                            <span class="tag">HTML</span>
+                            <span class="tag">CSS</span>
+                            <span class="tag">JavaScript</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://nyweb.top/xtccode" target="_blank" class="project-link">
+                                <i class="fas fa-external-link-alt"></i>
+                                访问网站
+                            </a>
+                            <a href="https://github.com/XTCny/nyweb" target="_blank" class="project-link">
+                                <i class="fab fa-github"></i>
+                                源码
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3>nybox</h3>
+                        <p>最低安卓4.4使用的工具箱，适合小天才手表</p>
+                        <div class="project-tags">
+                            <span class="tag">Android</span>
+                            <span class="tag">Kotlin</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://vip.123pan.cn/1841432992/14077845" target="_blank" class="project-link">
+                                <i class="fas fa-download"></i>
+                                下载APK
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <h3>AIchat</h3>
+                        <p>使用芯&API做的简易ai助手，（其实没啥用）</p>
+                        <div class="project-tags">
+                            <span class="tag">AI</span>
+                            <span class="tag">html</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://nyweb.top/aichat" target="_blank" class="project-link">
+                                <i class="fas fa-external-link-alt"></i>
+                                访问网站
+                            </a>
+                            <a href="https://github.com/XTCny/nyweb" target="_blank" class="project-link">
+                                <i class="fab fa-github"></i>
+                                源码
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 时间线 -->
+            <section id="timeline" class="section">
+                <h2>时间线</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">2025.08</div>
+                        <div class="timeline-content">
+                            <h3>网站大更新</h3>
+                            <p>全新的界面设计，增加多种工具与功能</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">2025.07</div>
+                        <div class="timeline-content">
+                            <h3>网站域名更改</h3>
+                            <p>域名由github免费的更改为阿里云域名nyweb.top</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">2025.05</div>
+                        <div class="timeline-content">
+                            <h3>网站正式上线</h3>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">2025.04</div>
+                        <div class="timeline-content">
+                            <h3>建立ny交流群</h3>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">2025.03</div>
+                        <div class="timeline-content">
+                            <h3>开发了nybox的apk</h3>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">2025.01</div>
+                        <div class="timeline-content">
+                            <h3>制作bat版小天才工具箱</h3>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">2024.11</div>
+                        <div class="timeline-content">
+                            <h3>💻 开始专注apk开发</h3>
+                            <p>学习Androidstudio，kotlinApk开发。</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-date">2024.10</div>
+                        <div class="timeline-content">
+                            <h3>💻 刷机小天才Z8A</h3>
+                            <p>刷机小天才Z8A，加入更多破解群，开始接远程破解，加入小天才圈子。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">2023</div>
+                        <div class="timeline-content">
+                            <h3>🎓 开始刷机小天才D3</h3>
+                            <p>加入破解频道，刷机小天才D3。</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
