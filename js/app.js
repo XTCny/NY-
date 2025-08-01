@@ -3,6 +3,69 @@
  * 用于动态生成文件列表和处理下载功能
  */
 
+// 公告弹窗功能
+function initAnnouncement() {
+    const modal = document.getElementById('announcement-modal');
+    const closeBtn = document.getElementById('close-announcement');
+    
+    // 每次都显示公告
+    modal.style.display = 'flex';
+    
+    // 5秒后自动关闭
+    setTimeout(() => {
+        closeAnnouncement();
+    }, 5000);
+    
+    // 关闭按钮事件
+    closeBtn.addEventListener('click', closeAnnouncement);
+    
+    // 点击背景关闭
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            closeAnnouncement();
+        }
+    });
+}
+
+function closeAnnouncement() {
+    const modal = document.getElementById('announcement-modal');
+    modal.classList.add('fade-out');
+    
+    setTimeout(() => {
+        modal.style.display = 'none';
+        modal.classList.remove('fade-out');
+    }, 500);
+}
+
+// 获取每日一言
+async function fetchDailyQuote() {
+    const quoteElement = document.getElementById('daily-quote');
+    
+    try {
+        const requestOptions = {
+            method: 'GET',
+            redirect: 'follow'
+        };
+        
+        const response = await fetch('http://api.corexwear.com/yan/index.php', requestOptions);
+        const result = await response.text();
+        const data = JSON.parse(result);
+        
+        if (data.status === 200 && data.yan) {
+            quoteElement.textContent = data.yan;
+            // 添加淡入动画效果
+            quoteElement.style.opacity = '0';
+            setTimeout(() => {
+                quoteElement.style.transition = 'opacity 0.5s ease-in-out';
+                quoteElement.style.opacity = '1';
+            }, 100);
+        }
+    } catch (error) {
+        console.error('获取每日一言失败:', error);
+        // 保持默认文本
+    }
+}
+
 // 更新日期时间显示
 function updateDateTime() {
     const now = new Date();
@@ -76,19 +139,22 @@ function setTheme(theme) {
 const fileData = {
     // 根目录文件
     files: [
-    
     ],
     // 文件夹数据
     folders: [
         {
             id: "XTC",
             name: "小天才",
+            modifiedDate: "2025-7-31",
+            fileCount: 21,
             files: [
             ],
             folders: [
                 {
                     id: "XTCRootTools",
                     name: "root",
+                    modifiedDate: "2025-7-31",
+                    fileCount: 6,
                     files: [
                         {
                             id: 4,
@@ -138,6 +204,8 @@ const fileData = {
                 {
                     id: "apks",
                     name: "应用",
+                    modifiedDate: "2025-7-31",
+                    fileCount: 6,
                     files: [
                         {
                             id: 6,
@@ -186,6 +254,8 @@ const fileData = {
                 {
                     id: "modules",
                     name: "magisk模块",
+                    modifiedDate: "2025-7-31",
+                    fileCount: 9,
                     files: [
                         {
                             id: 1,
@@ -269,11 +339,21 @@ function generateFolderHTML(folder) {
     // 生成子文件夹HTML
     const subFoldersHTML = folder.folders ? folder.folders.map(subFolder => generateFolderHTML(subFolder)).join('') : '';
     
+    // 获取文件数量和修改日期
+    const fileCount = folder.fileCount || (folder.files ? folder.files.length : 0);
+    const modifiedDate = folder.modifiedDate || '未知';
+    
     return `
         <div class="folder" id="${folder.id}">
             <div class="folder-header">
                 <i class="fas fa-folder-open"></i>
-                <span class="folder-name">${folder.name}</span>
+                <div class="folder-info">
+                    <span class="folder-name">${folder.name}</span>
+                    <div class="folder-meta">
+                        <span class="file-count">${fileCount} 个文件</span>
+                        <span class="modified-date">修改于 ${modifiedDate}</span>
+                    </div>
+                </div>
                 <button class="folder-toggle" onclick="toggleFolder('${folder.id}')">
                     <i class="fas fa-chevron-down"></i>
                 </button>
@@ -496,6 +576,7 @@ function showAllFiles() {
 const topicData = {
     website: {
         title: '推荐网址',
+        modifiedDate: '2025-7-31',
         content: `
             <h2>推荐的网址</h2>
             <p>总是有人问我教程和文件所以我整理了一下一些网址</p>
@@ -507,6 +588,7 @@ const topicData = {
     },
     about: {
         title: '关于我们',
+        modifiedDate: '2025-7-31',
         content: `
             <h2>关于本站</h2>
             <p>这是我做的一个的文件分享站，如果直链下载不可用，请使用网盘下载。</p>
@@ -526,6 +608,7 @@ const topicData = {
     },
     donate: {
         title: '支持我们',
+        modifiedDate: '2025-7-31',
         content: `
             <p>本站直链下载都需要123云盘的会员，域名也需要钱，所以需要你们的捐赠，捐赠者会在我开发的项目中和QQ群显示，1元以下不会展示。捐赠请备注展示的名字，捐赠大于等于5元可以找我激活逆叶box,apk</p>
             
@@ -540,6 +623,7 @@ const topicData = {
     },
     upload: {
         title: '文件上传',
+        modifiedDate: '2025-7-31',
         content: `
             <p>欢迎向本站提交优质文件资源，让更多用户受益！</p>          
             <h3>📝 上传方式</h3>
@@ -550,6 +634,7 @@ const topicData = {
     },
     announcement: {
         title: '公告',
+        modifiedDate: '2025-7-31',
         content: `
             <h2>📢 最新公告</h2>
              <div style="background: rgba(40, 167, 69, 0.1); padding: 1rem; border-radius: 8px; margin-bottom: 1rem; border-left: 4px solid #28a745;">
@@ -714,6 +799,30 @@ function showTopicDetail(topicId) {
 }
 
 /**
+ * 初始化专题卡片，添加修改日期
+ */
+function initTopicCards() {
+    const topicCards = document.querySelectorAll('.topic-card');
+    
+    topicCards.forEach(card => {
+        const topicId = card.getAttribute('data-topic');
+        const topic = topicData[topicId];
+        
+        if (topic && topic.modifiedDate) {
+            // 查找卡片中的描述段落
+            const description = card.querySelector('p');
+            if (description) {
+                // 在描述后添加修改日期
+                const dateElement = document.createElement('div');
+                dateElement.className = 'topic-date';
+                dateElement.textContent = `修改于 ${topic.modifiedDate}`;
+                card.appendChild(dateElement);
+            }
+        }
+    });
+}
+
+/**
  * 显示专题网格
  */
 function showTopicsGrid() {
@@ -734,6 +843,23 @@ function showTopicsGrid() {
     if (searchContainer) {
         searchContainer.style.display = 'none';
         searchContainer.classList.add('hidden');
+    }
+}
+
+/**
+ * 初始化头像点击事件
+ */
+function initAvatarClick() {
+    const avatarLink = document.querySelector('.avatar-link');
+    
+    if (avatarLink) {
+        avatarLink.addEventListener('click', () => {
+            // 打开个人博客网站
+            window.open('https://nyweb.top/blog/', '_blank');
+        });
+        
+        // 添加提示文本
+        avatarLink.setAttribute('title', '点击打开个人网站');
     }
 }
 
@@ -758,6 +884,18 @@ document.addEventListener('DOMContentLoaded', function() {
     // 初始化时间显示
     updateDateTime();
     setInterval(updateDateTime, 1000);
+
+    // 获取每日一言
+    fetchDailyQuote();
+
+    // 初始化专题卡片修改日期
+    initTopicCards();
+
+    // 初始化公告弹窗
+    initAnnouncement();
+
+    // 初始化头像点击事件
+    initAvatarClick();
 
     // 显示所有文件
     showAllFiles();
