@@ -35,32 +35,32 @@
 
 /* ========== 深色主题（黑夜模式）========== */
 [data-theme="dark"] {
-    /* 主要颜色 - 科技感蓝黑色调 */
-    --primary-color: #0099FF;           /* 主色调：浅蓝色（强调色）*/
-    --secondary-color: #003366;         /* 辅助色：深蓝色 */
+    /* 主要颜色 - 高科技感霓虹色调 */
+    --primary-color: #00ffff;           /* 主色调：青色霓虹 */
+    --secondary-color: #0080ff;         /* 辅助色：蓝色霓虹 */
     
     /* 背景颜色 */
-    --background-color: #000000;        /* 页面背景：纯黑色 */
-    --card-bg: rgba(0, 51, 102, 0.15);  /* 卡片背景：半透明深蓝色 */
-    --header-bg: rgba(18, 23, 24, 0.9);    /* 头部背景：半透明黑色 */
+    --background-color: #0a0a0a;        /* 页面背景：深黑色 */
+    --card-bg: rgba(0, 20, 40, 0.3);    /* 卡片背景：半透明深蓝黑 */
+    --header-bg: rgba(0, 10, 20, 0.85); /* 头部背景：深蓝黑渐变 */
     
     /* 文字颜色 */
-    --text-color: #ffffff;              /* 主要文字：纯白色 */
-    --text-secondary: #b3d9ff;          /* 次要文字：浅蓝白色 */
+    --text-color: #e0f6ff;              /* 主要文字：冷白色 */
+    --text-secondary: #80d4ff;          /* 次要文字：浅青色 */
     
     /* 搜索栏颜色 */
-    --search-bg: rgba(0, 51, 102, 0.596); /* 搜索框背景：半透明深蓝色 */
-    --search-text: #ffffff;             /* 搜索框文字：纯白色 */
-    --search-placeholder: #b3d9ff;      /* 搜索框占位符：浅蓝白色 */
+    --search-bg: rgba(0, 30, 60, 0.6);  /* 搜索框背景：深蓝黑 */
+    --search-text: #e0f6ff;             /* 搜索框文字：冷白色 */
+    --search-placeholder: #80d4ff;      /* 搜索框占位符：浅青色 */
     
     /* 日期时间显示颜色 */
-    --datetime-bg: rgba(0, 38, 77, 0.8); /* 日期时间背景：深蓝色 */
-    --datetime-text: #0099FF;           /* 日期时间文字：浅蓝色 */
+    --datetime-bg: linear-gradient(135deg, rgba(0, 255, 255, 0.1), rgba(0, 128, 255, 0.1)); /* 渐变背景 */
+    --datetime-text: #00ffff;           /* 日期时间文字：青色霓虹 */
     
     /* 其他样式 */
-    --border-color: #003366;            /* 边框颜色：深蓝色 */
-    --hover-color: rgba(0, 51, 102, 0.2); /* 悬停背景：浅深蓝色 */
-    --shadow: 0 4px 15px rgba(0, 153, 255, 0.1); /* 阴影效果（蓝色光晕） */
+    --border-color: rgba(0, 255, 255, 0.3); /* 边框颜色：青色霓虹边框 */
+    --hover-color: rgba(0, 255, 255, 0.1);  /* 悬停背景：青色霓虹光晕 */
+    --shadow: 0 4px 20px rgba(0, 255, 255, 0.2), 0 0 40px rgba(0, 128, 255, 0.1); /* 多层霓虹阴影 */
 }
 
 * {
@@ -92,8 +92,221 @@ body {
 
 /* 黑夜模式页面背景 */
 [data-theme="dark"] body {
-    background-image: linear-gradient(135deg, #0d1117 0%, #161b22 50%, #21262d 100%);  /* 黑夜模式渐变背景 */
-    background-color: #0d1117;                 /* 黑夜模式背景色 */
+    background-image: 
+        radial-gradient(circle at 20% 80%, rgba(0, 255, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(0, 128, 255, 0.1) 0%, transparent 50%),
+        linear-gradient(135deg, #0a0a0a 0%, #0d1117 25%, #161b22 50%, #0a0a0a 75%, #000000 100%);
+    background-color: #0a0a0a;
+    background-attachment: fixed;
+    position: relative;
+}
+
+/* 添加动态光效背景 */
+[data-theme="dark"] body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 25% 25%, rgba(0, 255, 255, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(0, 128, 255, 0.05) 0%, transparent 50%);
+    animation: techGlow 8s ease-in-out infinite alternate;
+    pointer-events: none;
+    z-index: -1;
+}
+
+@keyframes techGlow {
+    0% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0.7;
+        transform: scale(1.1);
+    }
+}
+
+/* ========== 文件夹信息样式 ========== */
+.folder-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.folder-meta {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.file-count {
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+.modified-date {
+    color: var(--text-secondary);
+}
+
+/* ========== 专题卡片日期样式 ========== */
+.topic-date {
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+/* 黑夜模式下的样式 */
+[data-theme="dark"] .topic-date {
+    color: var(--text-secondary);
+}
+
+[data-theme="dark"] .folder-meta {
+    color: var(--text-secondary);
+}
+
+[data-theme="dark"] .file-count {
+    color: var(--primary-color);
+}
+
+[data-theme="dark"] .modified-date {
+    color: var(--text-secondary);
+}
+.announcement-modal {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: auto;
+    height: auto;
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    display: block;
+    z-index: 1500;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.announcement-modal.fade-out {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.announcement-content {
+    background: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+    max-width: 320px;
+    width: 320px;
+    max-height: 400px;
+    overflow-y: auto;
+    animation: slideInUp 0.6s ease-out;
+}
+
+/* 黑夜模式下的公告弹窗 */
+[data-theme="dark"] .announcement-content {
+    background: rgba(0, 20, 40, 0.95);
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    box-shadow: 0 8px 32px rgba(0, 255, 255, 0.2), 0 0 60px rgba(0, 128, 255, 0.1);
+}
+
+.announcement-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px 10px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.announcement-header h3 {
+    margin: 0;
+    color: var(--primary-color);
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* 黑夜模式下的公告标题 */
+[data-theme="dark"] .announcement-header h3 {
+    color: var(--primary-color);
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+.close-announcement {
+    background: none;
+    border: none;
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    width: 26px;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-announcement:hover {
+    background: var(--hover-color);
+    color: var(--text-color);
+    transform: scale(1.1);
+}
+
+.announcement-body {
+    padding: 15px 20px 20px;
+    line-height: 1.5;
+    font-size: 0.9rem;
+}
+
+.announcement-body p {
+    margin: 8px 0;
+    color: var(--text-color);
+}
+
+.announcement-body a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.announcement-body a:hover {
+    text-decoration: underline;
+}
+
+/* 黑夜模式下的公告链接 */
+[data-theme="dark"] .announcement-body a {
+    color: var(--primary-color);
+    text-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
+}
+
+@keyframes slideInDown {
+    0% {
+        transform: translateY(-100px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInUp {
+    0% {
+        transform: translateY(100px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
 /* ========== 主题切换按钮 ========== */
@@ -757,6 +970,39 @@ body {
 }
 
 /* ========== 头部样式 ========== */
+/* ========== 左上角头像样式 ========== */
+.top-avatar {
+    position: fixed;                            /* 固定定位 */
+    top: 20px;                                  /* 距离顶部 */
+    left: 20px;                                 /* 距离左侧 */
+    z-index: 1000;                              /* 层级 */
+}
+
+.top-avatar .avatar-link {
+    cursor: pointer;                            /* 鼠标指针 */
+    transition: var(--transition);               /* 过渡动画 */
+    display: block;                             /* 块级元素 */
+}
+
+.top-avatar .avatar-link:hover {
+    transform: scale(1.05);                     /* 悬停放大 */
+}
+
+.top-avatar .header-avatar {
+    width: 50px;                                /* 宽度 */
+    height: 50px;                               /* 高度 */
+    border-radius: 50%;                         /* 圆形 */
+    object-fit: cover;                          /* 覆盖填充 */
+    border: 2px solid white;                    /* 白色边框 */
+    transition: var(--transition);               /* 过渡动画 */
+}
+
+/* 黑夜模式下的左上角头像 */
+[data-theme="dark"] .top-avatar .header-avatar {
+    border: 2px solid rgba(255, 255, 255, 0.8); /* 半透明白色边框 */
+}
+
+/* ========== 头部样式调整 ========== */
 header {
     text-align: center;                         /* 文字居中 */
     margin-bottom: 30px;                        /* 底部外边距 */
@@ -779,6 +1025,22 @@ header h1 {
 /* 头部描述文字 */
 header p {
     margin-bottom: 15px;                        /* 底部外边距 */
+}
+
+/* 每日一言特殊样式 */
+#daily-quote {
+    font-style: italic;                         /* 斜体 */
+    font-size: 1.1rem;                          /* 稍大字体 */
+    opacity: 0.9;                               /* 轻微透明 */
+    transition: all 0.5s ease-in-out;          /* 平滑过渡 */
+}
+
+/* 黑夜模式下的每日一言 */
+[data-theme="dark"] #daily-quote {
+    color: var(--primary-color);               /* 青色霓虹 */
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.3); /* 霓虹光晕 */
+    font-weight: 300;                          /* 细字体 */
+    letter-spacing: 0.5px;                     /* 字母间距 */
 }
 
 /* ========== 主要内容区域 ========== */
